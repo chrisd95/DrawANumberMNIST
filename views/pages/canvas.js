@@ -153,9 +153,12 @@ window.requestAnimFrame = (function(callback) {
 // Draw to the canvas
 function renderCanvas() {
   if (drawing) {
+    ctx.beginPath();
     ctx.moveTo(lastPos.x, lastPos.y);
     ctx.lineTo(mousePos.x, mousePos.y);
+    ctx.closePath();
     ctx.stroke();
+
     lastPos = mousePos;
   }
 }
