@@ -161,6 +161,25 @@ loadingModelPromise.then(() => {
   document.body.addEventListener("mouseup", bodyMouseUp)
   document.body.addEventListener("mouseout", bodyMouseOut)
   clearButton.addEventListener("mousedown", clearCanvas)
+
+
+  document.body.addEventListener("touchstart", function (e) {
+    if (e.target == canvas) {
+      e.preventDefault();
+    }
+  }, false);
+  document.body.addEventListener("touchend", function (e) {
+    if (e.target == canvas) {
+      e.preventDefault();
+    }
+  }, false);
+  document.body.addEventListener("touchmove", function (e) {
+    if (e.target == canvas) {
+      e.preventDefault();
+    }
+  }, false);
+
+
   ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE)
   ctx.fillText("Draw a number here!", CANVAS_SIZE / 2, CANVAS_SIZE / 2)
 })
