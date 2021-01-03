@@ -97,6 +97,7 @@ function canvasMouseMove(event) {
 
 function bodyMouseUp() {
   isMouseDown = false;
+  drawing = false;
 }
 
 
