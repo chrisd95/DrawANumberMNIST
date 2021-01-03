@@ -9,6 +9,5 @@ express()
   .get('/', (req, res) => res.render('pages/index'))
   .get('/my-model.onnx',(req, res) => res.sendfile('views/pages/onnx_model.onnx'))
   .get('/canvas.js',(req, res) => res.sendfile('views/pages/canvas.js'))
-  .get('/scroll-lock.js',(req, res) => res.sendfile('views/pages/scroll-lock.js'))
 
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
