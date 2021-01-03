@@ -1,5 +1,5 @@
 const CANVAS_SIZE = 280;
-const CANVAS_SCALE = 0.5;
+const CANVAS_SCALE = 1;
 
 
 const canvas = document.getElementById("canvas");

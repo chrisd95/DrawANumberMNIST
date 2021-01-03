@@ -1,100 +1,110 @@
 <html>
-  <head> </head>
+
+<head> </head>
+
+<body>
+
+  <!-- Code that consume ONNX.js -->
+  <html>
+
+  <head>
+    <link rel="stylesheet" href="mystyle.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  </head>
 
   <body>
+    <div class="main-container d-flex flex-column  justify-content-center align-items-center">
+      <div>
+        <button type="button" class="model-btn">Model 1</button>
+        <button type="button" class="model-btn">Model 2</button>
+        <button type="button" class="model-btn">Model 3</button>
+        <button type="button" class="model-btn">Model 4</button>
 
-    <!-- Code that consume ONNX.js -->
-    <html>
-      <head>
-        <link rel="stylesheet" href="mystyle.css">
+      </div>
+      <div class="card elevation">
+        <canvas class="canvas elevation" id="canvas" width="280" height="280"></canvas>
 
-      </head>
+        <div class="button" id="clear-button">CLEAR</div>
 
-      <body>
-        <div class="card elevation">
-          <canvas
-            class="canvas elevation"
-            id="canvas"
-            width="280"
-            height="280"
-          ></canvas>
-
-          <div class="button" id="clear-button">CLEAR</div>
-
-          <div class="predictions">
-            <div class="prediction-col" id="prediction-0">
-              <div class="prediction-bar-container">
-                <div class="prediction-bar"></div>
-              </div>
-              <div class="prediction-number">0</div>
+        <div class="predictions">
+          <div class="prediction-col" id="prediction-0">
+            <div class="prediction-bar-container">
+              <div class="prediction-bar"></div>
             </div>
+            <div class="prediction-number">0</div>
+          </div>
 
-            <div class="prediction-col" id="prediction-1">
-              <div class="prediction-bar-container">
-                <div class="prediction-bar"></div>
-              </div>
-              <div class="prediction-number">1</div>
+          <div class="prediction-col" id="prediction-1">
+            <div class="prediction-bar-container">
+              <div class="prediction-bar"></div>
             </div>
+            <div class="prediction-number">1</div>
+          </div>
 
-            <div class="prediction-col" id="prediction-2">
-              <div class="prediction-bar-container">
-                <div class="prediction-bar"></div>
-              </div>
-              <div class="prediction-number">2</div>
+          <div class="prediction-col" id="prediction-2">
+            <div class="prediction-bar-container">
+              <div class="prediction-bar"></div>
             </div>
+            <div class="prediction-number">2</div>
+          </div>
 
-            <div class="prediction-col" id="prediction-3">
-              <div class="prediction-bar-container">
-                <div class="prediction-bar"></div>
-              </div>
-              <div class="prediction-number">3</div>
+          <div class="prediction-col" id="prediction-3">
+            <div class="prediction-bar-container">
+              <div class="prediction-bar"></div>
             </div>
+            <div class="prediction-number">3</div>
+          </div>
 
-            <div class="prediction-col" id="prediction-4">
-              <div class="prediction-bar-container">
-                <div class="prediction-bar"></div>
-              </div>
-              <div class="prediction-number">4</div>
+          <div class="prediction-col" id="prediction-4">
+            <div class="prediction-bar-container">
+              <div class="prediction-bar"></div>
             </div>
+            <div class="prediction-number">4</div>
+          </div>
 
-            <div class="prediction-col" id="prediction-5">
-              <div class="prediction-bar-container">
-                <div class="prediction-bar"></div>
-              </div>
-              <div class="prediction-number">5</div>
+          <div class="prediction-col" id="prediction-5">
+            <div class="prediction-bar-container">
+              <div class="prediction-bar"></div>
             </div>
+            <div class="prediction-number">5</div>
+          </div>
 
-            <div class="prediction-col" id="prediction-6">
-              <div class="prediction-bar-container">
-                <div class="prediction-bar"></div>
-              </div>
-              <div class="prediction-number">6</div>
+          <div class="prediction-col" id="prediction-6">
+            <div class="prediction-bar-container">
+              <div class="prediction-bar"></div>
             </div>
+            <div class="prediction-number">6</div>
+          </div>
 
-            <div class="prediction-col" id="prediction-7">
-              <div class="prediction-bar-container">
-                <div class="prediction-bar"></div>
-              </div>
-              <div class="prediction-number">7</div>
+          <div class="prediction-col" id="prediction-7">
+            <div class="prediction-bar-container">
+              <div class="prediction-bar"></div>
             </div>
+            <div class="prediction-number">7</div>
+          </div>
 
-            <div class="prediction-col" id="prediction-8">
-              <div class="prediction-bar-container">
-                <div class="prediction-bar"></div>
-              </div>
-              <div class="prediction-number">8</div>
+          <div class="prediction-col" id="prediction-8">
+            <div class="prediction-bar-container">
+              <div class="prediction-bar"></div>
             </div>
+            <div class="prediction-number">8</div>
+          </div>
 
-            <div class="prediction-col" id="prediction-9">
-              <div class="prediction-bar-container">
-                <div class="prediction-bar"></div>
-              </div>
-              <div class="prediction-number">9</div>
+          <div class="prediction-col" id="prediction-9">
+            <div class="prediction-bar-container">
+              <div class="prediction-bar"></div>
             </div>
+            <div class="prediction-number">9</div>
           </div>
         </div>
+      </div>
+    </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/onnxjs/dist/onnx.min.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/onnxjs/dist/onnx.min.js"></script>
     <script src="canvas.js"></script>
   </body>
-</html>
+
+  </html>
