@@ -22,11 +22,11 @@ ctx.textAlign = "center";
 ctx.textBaseline = "middle";
 ctx.fillStyle = "#212121";
 
-ctx.fillText("Loading...", CANVAS_SIZE/2, CANVAS_SIZE/2)
+ctx.fillText("Loading...", CANVAS_SIZE / 2, CANVAS_SIZE / 2)
 
 function clearCanvas() {
-  ctx.clearRect(0,0, CANVAS_SIZE,CANVAS_SIZE);
-  for (let i =0; i<10; i++){
+  ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+  for (let i = 0; i < 10; i++) {
     const element = document.getElementById(`prediction-${i}`);
     element.className = "prediction-col"
     element.children[0].children[0].style.height = "0"
@@ -34,88 +34,133 @@ function clearCanvas() {
 }
 
 
-function drawLine(fromX, fromY, toX, toY){
+function drawLine(fromX, fromY, toX, toY) {
   ctx.beginPath();
   ctx.moveTo(fromX, fromY);
-ctx.lineTo(toX, toY);
-ctx.closePath();
-ctx.stroke();
-updatePredictions();
+  ctx.lineTo(toX, toY);
+  ctx.closePath();
+  ctx.stroke();
+  updatePredictions();
 }
 
 
-async function updatePredictions(){
-  const imgData = ctx.getImageData(0,0, CANVAS_SIZE,CANVAS_SIZE)
+async function updatePredictions() {
+  const imgData = ctx.getImageData(0, 0, CANVAS_SIZE, CANVAS_SIZE)
   const inputTwo = new onnx.Tensor(new Float32Array(imgData.data), "float32");
-  const input = new onnx.Tensor(new Float32Array(280*280*4), 'float32',[313600])
+  const input = new onnx.Tensor(new Float32Array(280 * 280 * 4), 'float32', [313600])
   // console.log(inputTwo)
   const outputMap = await sess.run([inputTwo]);
 
-  console.log(outputMap)
   const outputTensor = outputMap.values().next().value;
   const predictions = outputTensor.data
   const maxPrediction = Math.max(...predictions);
 
-  for(let i = 0; i< predictions.length; i++){
+  for (let i = 0; i < predictions.length; i++) {
     const element = document.getElementById(`prediction-${i}`);
 
     element.children[0].children[0].style.height = `${predictions[i] * 100}%`;
     element.className =
-      predictions[i] === maxPrediction
-        ? "prediction-col top-prediction"
-        : "prediction-col";
+      predictions[i] === maxPrediction ?
+      "prediction-col top-prediction" :
+      "prediction-col";
   }
 }
 
-function canvasMouseDown(event){
+function canvasMouseDown(event) {
   isMouseDown = true;
-  if (hasIntroText){
+  if (hasIntroText) {
     clearCanvas();
     hasIntroText = false
   }
 
-  const x = event.offsetX/CANVAS_SCALE
-  const y = event.offsetY/ CANVAS_SCALE
+  const x = event.offsetX / CANVAS_SCALE
+  const y = event.offsetY / CANVAS_SCALE
 
   lastX = x + 0.001
   lastY = y + 0.001
   canvasMouseMove(event);
 }
 
-function canvasMouseMove(event){
-  const x = event.offsetX/CANVAS_SCALE
-  const y = event.offsetY/CANVAS_SCALE
+function canvasMouseMove(event) {
+  const x = event.offsetX / CANVAS_SCALE
+  const y = event.offsetY / CANVAS_SCALE
 
   if (isMouseDown) {
-    drawLine(lastX, lastY, x,y);
+    drawLine(lastX, lastY, x, y);
   }
 
   lastX = x;
   lastY = y;
 }
 
+function canvasTouchStart(event) {
+  mousePos = getTouchPos(canvas, event);
+  let touch = event.touches[0];
+  let mouseEvent = new MouseEvent("mousedown", {
+    clientX: touch.clientX,
+    clientY: touch.clientY
+  })
+  canvas.dispatchEvent(mouseEvent)
+}
 
-function bodyMouseUp(){
+function canvasTouchEnd(event) {
+  var mouseEvent = new MouseEvent("mouseup", {});
+  canvas.dispatchEvent(mouseEvent);
+}
+
+function canvasTouchMove(event) {
+  var touch = event.touches[0];
+  var mouseEvent = new MouseEvent("mousemove", {
+    clientX: touch.clientX,
+    clientY: touch.clientY
+  });
+  canvas.dispatchEvent(mouseEvent);
+}
+
+function bodyMouseUp() {
   isMouseDown = false;
 }
 
 
-function  bodyMouseOut(event){
+function bodyMouseOut(event) {
   // We won't be able to detect a MouseUp event if the mouse has move
   // Outside the window, so when the mouse leaves the window,
   // we set ismousedown to false
-  if(!event.relatedTarget || event.relatedTarget.nodeName === "HTML"){
+  if (!event.relatedTarget || event.relatedTarget.nodeName === "HTML") {
     isMouseDown = false
   }
 }
+// Get the position of a touch relative to the canvas
+function getTouchPos(canvasDom, touchEvent) {
+  var rect = canvasDom.getBoundingClientRect();
+  return {
+    x: touchEvent.touches[0].clientX,
+    y: touchEvent.touches[0].clientY - rect.top
+  }
+};
 
-loadingModelPromise.then(() =>{
+
+
+
+
+loadingModelPromise.then(() => {
   canvas.addEventListener("mousedown", canvasMouseDown)
   canvas.addEventListener("mousemove", canvasMouseMove)
+  canvas.addEventListener("touchstart", canvasTouchStart, false);
+  canvas.addEventListener("touchend", canvasTouchEnd, false);
+  canvas.addEventListener("touchmove", function(e) {
+    var touch = e.touches[0];
+    var mouseEvent = new MouseEvent("mousemove", {
+      clientX: touch.clientX,
+      clientY: touch.clientY
+    });
+    canvas.dispatchEvent(mouseEvent);
+  }, false);
+
+
   document.body.addEventListener("mouseup", bodyMouseUp)
   document.body.addEventListener("mouseout", bodyMouseOut)
   clearButton.addEventListener("mousedown", clearCanvas)
-
-  ctx.clearRect(0,0, CANVAS_SIZE, CANVAS_SIZE)
-  ctx.fillText("Draw a number here!", CANVAS_SIZE/2, CANVAS_SIZE/2)
+  ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE)
+  ctx.fillText("Draw a number here!", CANVAS_SIZE / 2, CANVAS_SIZE / 2)
 })
