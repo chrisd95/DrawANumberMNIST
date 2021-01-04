@@ -19,26 +19,35 @@ body {
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   justify-content: center;
   margin: 0;
-  background: #e9c46a;
   overflow: hidden;
 }
 
 .main-container {
   width: 100%;
   height: 100%;
-  /* background-color: #3700B3; */
+  background: #f72585;
+}
+
+.model-btn-container{
+  display: flex;
+  justify-content: space-around;
+  /* background-color: green; */
+  height: 4%;
+  width: 25%;
+  margin: 1%
 }
 
 .model-btn {
-  background-color: #6200EE;
-  color: #fff;
+  background-color: #fff;
+  color: #480ca8;;
   border-radius: 10px;
   border: none;
 }
 
 .model-btn:focus {
   outline: 0;
-  background-color: #03DAC6
+  background-color: #480ca8;;
+  color: #fff;
 }
 
 .elevation {

@@ -10,16 +10,25 @@
   <head>
     <link rel="stylesheet" href="mystyle.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
   </head>
 
   <body>
     <div class="main-container d-flex flex-column  justify-content-center align-items-center">
-      <div>
-        <button type="button" class="model-btn">Model 1</button>
-        <button type="button" class="model-btn">Model 2</button>
-        <button type="button" class="model-btn">Model 3</button>
-        <button type="button" class="model-btn">Model 4</button>
+      <div class="title-container d-flex flex-column align-items-center justify-content-center">
+        <span class="display-4 text-light font-weight-bold">MNIST image classifier</span>
+        <br>
+        <span class="lead text-light">1- Pick a Model</span>
+        <span class="lead text-light">2- Draw a number</span>
+
+      </div>
+      <div class="model-btn-container">
+        <span class="text-light lead">Models:</span>
+        <button type="button" class="model-btn">Linear Regression</button>
+        <button type="button" class="model-btn">KNN</button>
+        <button type="button" class="model-btn">SVM</button>
+        <button type="button" class="model-btn">DNN</button>
 
       </div>
       <div class="card elevation">
@@ -105,6 +114,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/onnxjs/dist/onnx.min.js"></script>
     <script src="canvas.js"></script>
+    <script src="dynamic-style.js"></script>
   </body>
 
   </html>

@@ -20,7 +20,9 @@ ctx.lineJoin = "round";
 ctx.font = "28px sans-serif";
 ctx.textAlign = "center";
 ctx.textBaseline = "middle";
-ctx.fillStyle = "#212121";
+ctx.fillStyle = "#480ca8";
+ctx.strokeStyle = "#480ca8";
+
 
 ctx.fillText("Loading...", CANVAS_SIZE / 2, CANVAS_SIZE / 2)
 
