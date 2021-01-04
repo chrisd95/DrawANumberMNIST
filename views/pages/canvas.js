@@ -20,7 +20,7 @@ ctx.lineJoin = "round";
 ctx.font = "28px sans-serif";
 ctx.textAlign = "center";
 ctx.textBaseline = "middle";
-ctx.fillStyle = "#480ca8";
+ctx.fillStyle = "#480ca8;";
 ctx.strokeStyle = "#480ca8";
 
 
