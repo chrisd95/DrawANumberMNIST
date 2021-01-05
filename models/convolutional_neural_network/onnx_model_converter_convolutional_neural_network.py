@@ -17,6 +17,10 @@ import matplotlib.pyplot as plt
 from torchvision.utils import make_grid
 
 
+MEAN = 0.1307
+STANDARD_DEVIATION = 0.3081
+
+
 class ImageClassificationBase(nn.Module):
     def training_step(self, batch):
         images, labels = batch
@@ -64,6 +68,8 @@ class Cifar10CnnModel(ImageClassificationBase):
         xb = xb.reshape(1, 1, 280, 280)
         xb = F.avg_pool2d(xb, 10, stride=10)
         xb = xb / 255
+        xb = (xb - MEAN) / STANDARD_DEVIATION
+
         xb = self.conv1(xb)
         xb = F.relu(xb)
         xb = self.conv2(xb)
@@ -75,17 +81,19 @@ class Cifar10CnnModel(ImageClassificationBase):
         xb = F.relu(xb)
         xb = self.dropout2(xb)
         xb = self.fc2(xb)
+
         output = F.softmax(xb, dim=1)
+
         return output
 
 
 CNNModel = Cifar10CnnModel()
 
 CNNModel.load_state_dict(torch.load(
-    "pytorch_model_convolutional_neural_network.pt"))
+    "pytorch_model_convolutional_neural_network_2.pt"))
 
 dummy_input = torch.zeros([280*280*4])
 
 CNNModel(dummy_input)
 torch.onnx.export(CNNModel, dummy_input,
-                  'onnx_model_convolutional_neural_network.onnx', verbose=True)
+                  'onnx_model_convolutional_neural_network_2.onnx', verbose=True)

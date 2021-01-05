@@ -18,11 +18,11 @@ const sessFour = new onnx.InferenceSession();
 const loadingLRModelPromise = sessOne.loadModel(
   "./my-model-logistic-regression.onnx"
 );
-const loadingCNNModelPromise = sessTwo.loadModel(
-  "./my-model-convolutional-neural-network.onnx"
-);
-const loadingDNNModelPromise = sessThree.loadModel(
+const loadingDNNModelPromise = sessTwo.loadModel(
   "./my-model-deep-neural-network.onnx"
+);
+const loadingCNNModelPromise = sessThree.loadModel(
+  "./my-model-convolutional-neural-network.onnx"
 );
 const loadingKNNModelPromise = sessFour.loadModel(
   "./my-model-elliot-waite.onnx"
@@ -33,7 +33,7 @@ ctx.font = "28px sans-serif";
 ctx.textAlign = "center";
 ctx.textBaseline = "middle";
 ctx.fillStyle = "#480ca8;";
-ctx.strokeStyle = "#480ca8";
+ctx.strokeStyle = "#7209b7";
 
 ctx.fillText("Loading...", CANVAS_SIZE / 2, CANVAS_SIZE / 2);
 
@@ -62,11 +62,11 @@ async function updatePredictions() {
   // console.log(currentModel);
   if (currentModel === "LR") {
     outputMap = await sessOne.run([input]);
-  } else if (currentModel === "CNN") {
-    outputMap = await sessTwo.run([input]);
   } else if (currentModel === "DNN") {
-    outputMap = await sessThree.run([input]);
+    outputMap = await sessTwo.run([input]);
   } else if (currentModel === "KNN") {
+    outputMap = await sessThree.run([input]);
+  } else if (currentModel === "CNN") {
     outputMap = await sessFour.run([input]);
   }
 
@@ -198,7 +198,7 @@ function renderCanvas() {
   renderCanvas();
 })();
 
-loadingLRModelPromise.then(() => {
+loadingKNNModelPromise.then(() => {
   canvas.addEventListener("mousedown", canvasMouseDown);
   canvas.addEventListener("mousemove", canvasMouseMove);
   document.body.addEventListener("mouseup", bodyMouseUp);
@@ -279,5 +279,5 @@ loadingLRModelPromise.then(() => {
   );
 
   ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
-  ctx.fillText("Draw a number here!", CANVAS_SIZE / 2, CANVAS_SIZE / 2);
+  ctx.fillText("Draw Any Number!", CANVAS_SIZE / 2, CANVAS_SIZE / 2);
 });

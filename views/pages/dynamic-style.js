@@ -2,7 +2,7 @@ var currentModel = "LR";
 
 const select = (model) => {
   // Remove selected from all classes
-  let models = ["LR", "CNN", "DNN", "KNN"];
+  let models = ["LR", "DNN", "KNN", "CNN"];
 
   for (var i = 0; i < models.length; i++) {
     let identifier = models[i] + "-button";
@@ -15,5 +15,6 @@ const select = (model) => {
   buttonDOM.classList.add("selected");
 
   currentModel = model;
+  console.log(currentModel);
   updatePredictions();
 };

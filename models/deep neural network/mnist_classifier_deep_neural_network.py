@@ -154,6 +154,13 @@ dataset = MNIST(root='../data/', download=True)
 
 dataset = MNIST(root='../data/', train=True, transform=transforms.ToTensor())
 
+# dataset = MNIST(root='../data/', train=True,
+#                 transform=transforms.Compose([
+#                     transforms.RandomAffine(
+#                         degrees=30, translate=(0.5, 0.5), scale=(0.25, 1),
+#                         shear=(-30, 30, -30, 30)), transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))
+#                 ]))
+
 # Split the dataset randomly between training and validation sets
 train_ds, val_ds = random_split(dataset, [50000, 10000])
 
@@ -171,8 +178,8 @@ deepModel = MNISTDeepNN(784, 32, 10)
 # Send to GPU
 to_device(deepModel, device)
 
-deepModel.load_state_dict(torch.load("pytorch_model_deep_neural_network.pt"))
+# deepModel.load_state_dict(torch.load("pytorch_model_deep_neural_network.pt"))
 
-history = fit(45, 0.5, deepModel, train_loader, val_loader)
+history = fit(45, 1, deepModel, train_loader, val_loader)
 
 torch.save(deepModel.state_dict(), "pytorch_model_deep_neural_network.pt")

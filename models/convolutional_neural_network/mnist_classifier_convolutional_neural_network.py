@@ -106,7 +106,6 @@ def fit(epochs, lr, model, train_loader, val_loader, opt_func=torch.optim.SGD):
             optimizer.step()
             optimizer.zero_grad()
         # Validation phase
-        print("able to train")
         result = evaluate(model, val_loader)
         result['train_loss'] = torch.stack(train_losses).mean().item()
         model.epoch_end(epoch, result)
@@ -163,7 +162,7 @@ dataset = MNIST(root='../data/', train=True,
 train_ds, val_ds = random_split(dataset, [50000, 10000])
 
 # Create the dataloaders
-batch_size = 512
+batch_size = 128
 train_loader = DataLoader(train_ds, batch_size, shuffle=True)
 val_loader = DataLoader(val_ds, batch_size, shuffle=True)
 # Send to GPU
