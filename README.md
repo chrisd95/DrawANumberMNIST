@@ -3,9 +3,13 @@ A simple web app which predicts the numbers drawn
 
 # Tech Stack
 model training: pytorch v1.7.1
+
 web model inference: onnx.js v1.8.0
+
 backend: node.js, express
+
 front-end: HTML5, CSS3, bootstrap v4.3.1
+
 
 # The models
 Showcases the different models such as:
