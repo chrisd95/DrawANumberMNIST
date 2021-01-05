@@ -1,119 +1,159 @@
 <html>
-
-<head> </head>
-
-<body>
-
-  <!-- Code that consume ONNX.js -->
-  <html>
-
-  <head>
-    <link rel="stylesheet" href="mystyle.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-  </head>
+  <head> </head>
 
   <body>
-    <div class="main-container d-flex flex-column  justify-content-center align-items-center">
-      <div class="title-container d-flex flex-column align-items-center justify-content-center">
-        <span class="title text-light font-weight-bold">Draw Any Image</span>
-        <span class="title-desc text-light">1- Pick a Model</span>
-        <span class="title-desc text-light">2- Draw a number</span>
+    <!-- Code that consume ONNX.js -->
+    <html>
+      <head>
+        <link rel="stylesheet" href="mystyle.css" />
+        <link
+          rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous"
+        />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+      </head>
 
-      </div>
-      <div class="model-btn-container">
-        <span class="title-desc text-light">Models: </span>
-        <button type="button" class="model-btn">Linear Regression</button>
-        <button type="button" class="model-btn">KNN</button>
-        <button type="button" class="model-btn">SVM</button>
-        <button type="button" class="model-btn">DNN</button>
-
-      </div>
-      <div class="card elevation">
-        <canvas class="canvas elevation" id="canvas" width="280" height="280"></canvas>
-
-        <div class="button" id="clear-button">CLEAR</div>
-
-        <div class="predictions d-flex justify-content-around">
-          <div class="prediction-col" id="prediction-0">
-            <div class="prediction-bar-container">
-              <div class="prediction-bar"></div>
-            </div>
-            <div class="prediction-number">0</div>
+      <body>
+        <div
+          class="main-container d-flex flex-column justify-content-center align-items-center"
+        >
+          <div
+            class="title-container d-flex flex-column align-items-center justify-content-center"
+          >
+            <span class="title text-light font-weight-bold"
+              >Draw Any Number</span
+            >
+            <span class="title-desc text-light">1- Pick a Model</span>
+            <span class="title-desc text-light">2- Draw a number</span>
           </div>
-
-          <div class="prediction-col" id="prediction-1">
-            <div class="prediction-bar-container">
-              <div class="prediction-bar"></div>
-            </div>
-            <div class="prediction-number">1</div>
+          <div class="model-btn-container">
+            <span class="title-desc text-light">Models: </span>
+            <button
+              id="LR-button"
+              onclick="select(`LR`)"
+              type="button"
+              class="model-btn selected"
+            >
+              Logistic Regression
+            </button>
+            <button
+              id="CNN-button"
+              onclick="select(`CNN`)"
+              type="button"
+              class="model-btn"
+            >
+              CNN
+            </button>
+            <button
+              id="DNN-button"
+              onclick="select(`DNN`)"
+              type="button"
+              class="model-btn"
+            >
+              DNN
+            </button>
+            <button
+              id="KNN-button"
+              onclick="select(`KNN`)"
+              type="button"
+              class="model-btn"
+            >
+              KNN
+            </button>
           </div>
+          <div class="card elevation">
+            <canvas
+              class="canvas elevation"
+              id="canvas"
+              width="280"
+              height="280"
+            ></canvas>
 
-          <div class="prediction-col" id="prediction-2">
-            <div class="prediction-bar-container">
-              <div class="prediction-bar"></div>
-            </div>
-            <div class="prediction-number">2</div>
-          </div>
+            <div class="button" id="clear-button">CLEAR</div>
 
-          <div class="prediction-col" id="prediction-3">
-            <div class="prediction-bar-container">
-              <div class="prediction-bar"></div>
-            </div>
-            <div class="prediction-number">3</div>
-          </div>
+            <div class="predictions d-flex justify-content-around">
+              <div class="prediction-col" id="prediction-0">
+                <div class="prediction-bar-container">
+                  <div class="prediction-bar"></div>
+                </div>
+                <div class="prediction-number">0</div>
+              </div>
 
-          <div class="prediction-col" id="prediction-4">
-            <div class="prediction-bar-container">
-              <div class="prediction-bar"></div>
-            </div>
-            <div class="prediction-number">4</div>
-          </div>
+              <div class="prediction-col" id="prediction-1">
+                <div class="prediction-bar-container">
+                  <div class="prediction-bar"></div>
+                </div>
+                <div class="prediction-number">1</div>
+              </div>
 
-          <div class="prediction-col" id="prediction-5">
-            <div class="prediction-bar-container">
-              <div class="prediction-bar"></div>
-            </div>
-            <div class="prediction-number">5</div>
-          </div>
+              <div class="prediction-col" id="prediction-2">
+                <div class="prediction-bar-container">
+                  <div class="prediction-bar"></div>
+                </div>
+                <div class="prediction-number">2</div>
+              </div>
 
-          <div class="prediction-col" id="prediction-6">
-            <div class="prediction-bar-container">
-              <div class="prediction-bar"></div>
-            </div>
-            <div class="prediction-number">6</div>
-          </div>
+              <div class="prediction-col" id="prediction-3">
+                <div class="prediction-bar-container">
+                  <div class="prediction-bar"></div>
+                </div>
+                <div class="prediction-number">3</div>
+              </div>
 
-          <div class="prediction-col" id="prediction-7">
-            <div class="prediction-bar-container">
-              <div class="prediction-bar"></div>
-            </div>
-            <div class="prediction-number">7</div>
-          </div>
+              <div class="prediction-col" id="prediction-4">
+                <div class="prediction-bar-container">
+                  <div class="prediction-bar"></div>
+                </div>
+                <div class="prediction-number">4</div>
+              </div>
 
-          <div class="prediction-col" id="prediction-8">
-            <div class="prediction-bar-container">
-              <div class="prediction-bar"></div>
-            </div>
-            <div class="prediction-number">8</div>
-          </div>
+              <div class="prediction-col" id="prediction-5">
+                <div class="prediction-bar-container">
+                  <div class="prediction-bar"></div>
+                </div>
+                <div class="prediction-number">5</div>
+              </div>
 
-          <div class="prediction-col" id="prediction-9">
-            <div class="prediction-bar-container">
-              <div class="prediction-bar"></div>
+              <div class="prediction-col" id="prediction-6">
+                <div class="prediction-bar-container">
+                  <div class="prediction-bar"></div>
+                </div>
+                <div class="prediction-number">6</div>
+              </div>
+
+              <div class="prediction-col" id="prediction-7">
+                <div class="prediction-bar-container">
+                  <div class="prediction-bar"></div>
+                </div>
+                <div class="prediction-number">7</div>
+              </div>
+
+              <div class="prediction-col" id="prediction-8">
+                <div class="prediction-bar-container">
+                  <div class="prediction-bar"></div>
+                </div>
+                <div class="prediction-number">8</div>
+              </div>
+
+              <div class="prediction-col" id="prediction-9">
+                <div class="prediction-bar-container">
+                  <div class="prediction-bar"></div>
+                </div>
+                <div class="prediction-number">9</div>
+              </div>
             </div>
-            <div class="prediction-number">9</div>
           </div>
         </div>
-      </div>
-    </div>
 
-
-
-    <script src="https://cdn.jsdelivr.net/npm/onnxjs/dist/onnx.min.js"></script>
-    <script src="canvas.js"></script>
-    <script src="dynamic-style.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/onnxjs/dist/onnx.min.js"></script>
+        <script src="dynamic-style.js"></script>
+        <script src="canvas.js"></script>
+      </body>
+    </html>
   </body>
-
-  </html>
+</html>

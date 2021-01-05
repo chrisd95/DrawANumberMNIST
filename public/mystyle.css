@@ -25,10 +25,10 @@ body {
 .main-container {
   width: 100%;
   height: 100%;
-  background: #f72585;
+  background: #7209b7;
 }
 
-.model-btn-container{
+.model-btn-container {
   display: flex;
   justify-content: space-around;
   /* background-color: green; */
@@ -39,7 +39,7 @@ body {
 
 .model-btn {
   background-color: #fff;
-  color: #480ca8;;
+  color: black;
   border-radius: 10px;
   border: none;
   font-size: 0.8rem;
@@ -48,16 +48,20 @@ body {
 
 .model-btn:focus {
   outline: 0;
-  background-color: #480ca8;;
+  background-color: #4cc9f0;
   color: #fff;
 }
-
-.title{
+.selected {
+  outline: 0;
+  background-color: #4cc9f0;
+  color: #fff;
+}
+.title {
   font-size: 2rem;
 }
 
-.title-desc{
-  font-size: 1.0rem;
+.title-desc {
+  font-size: 1rem;
 }
 .elevation {
   box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
@@ -86,7 +90,7 @@ body {
   font-weight: 500;
   letter-spacing: 1.25px;
   line-height: 36px;
-  margin: 16px 0;
+  margin: 13px 0;
   text-align: center;
   transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   user-select: none;
