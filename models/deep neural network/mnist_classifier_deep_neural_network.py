@@ -150,9 +150,10 @@ def fit(epochs, lr, model, train_loader, val_loader, opt_func=torch.optim.SGD):
 
 
 # Use MNIST dataset
-dataset = MNIST(root='../data/', download=True)
+dataset = MNIST(root='../../../data/', download=True)
 
-dataset = MNIST(root='../data/', train=True, transform=transforms.ToTensor())
+dataset = MNIST(root='../../../data/', train=True,
+                transform=transforms.ToTensor())
 
 # dataset = MNIST(root='../data/', train=True,
 #                 transform=transforms.Compose([

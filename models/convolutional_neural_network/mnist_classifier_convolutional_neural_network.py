@@ -149,9 +149,9 @@ class DeviceDataLoader():
 
 
 # Use MNIST dataset
-dataset = MNIST(root='../data/', download=True)
+dataset = MNIST(root='../../../data/', download=True)
 
-dataset = MNIST(root='../data/', train=True,
+dataset = MNIST(root='../../../data/', train=True,
                 transform=transforms.Compose([
                     transforms.RandomAffine(
                         degrees=30, translate=(0.5, 0.5), scale=(0.25, 1),

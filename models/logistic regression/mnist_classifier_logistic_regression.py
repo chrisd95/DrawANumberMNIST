@@ -17,9 +17,10 @@ from torchvision.datasets import MNIST
 import matplotlib.pyplot as plt
 
 
-dataset = MNIST(root='data/', download=True)
+dataset = MNIST(root='../../../data/', download=True)
 
-dataset = MNIST(root='data/', train=True, transform=transforms.ToTensor())
+dataset = MNIST(root='../../../data/', train=True,
+                transform=transforms.ToTensor())
 
 train_ds, val_ds = random_split(dataset, [50000, 10000])
 
