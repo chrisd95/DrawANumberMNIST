@@ -11,3 +11,7 @@ Showcases the different models such as:
 
 Live mode:
 https://drawanynumbermnist.herokuapp.com/
+
+
+Based on Elliot Waite's Demo:
+https://github.com/elliotwaite/pytorch-to-javascript-with-onnx-js
