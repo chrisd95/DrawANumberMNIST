@@ -13,6 +13,12 @@ express()
   .get("/my-model-deep-neural-network.onnx", (req, res) =>
     res.sendfile("views/pages/onnx_model_deep_neural_network.onnx")
   )
+  .get("/my-model-convolutional-neural-network.onnx", (req, res) =>
+    res.sendfile("views/pages/onnx_model_convolutional_neural_network.onnx")
+  )
+  .get("/my-model-elliot-waite.onnx", (req, res) =>
+    res.sendfile("views/pages/onnx_model_elliot_waite.onnx")
+  )
   .get("/canvas.js", (req, res) => res.sendfile("views/pages/canvas.js"))
   .get("/dynamic-style.js", (req, res) =>
     res.sendfile("views/pages/dynamic-style.js")

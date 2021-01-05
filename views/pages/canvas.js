@@ -19,13 +19,13 @@ const loadingLRModelPromise = sessOne.loadModel(
   "./my-model-logistic-regression.onnx"
 );
 const loadingCNNModelPromise = sessTwo.loadModel(
-  "./my-model-logistic-regression.onnx"
+  "./my-model-convolutional-neural-network.onnx"
 );
 const loadingDNNModelPromise = sessThree.loadModel(
   "./my-model-deep-neural-network.onnx"
 );
 const loadingKNNModelPromise = sessFour.loadModel(
-  "./my-model-logistic-regression.onnx"
+  "./my-model-elliot-waite.onnx"
 );
 ctx.lineWidth = 28;
 ctx.lineJoin = "round";
@@ -63,11 +63,11 @@ async function updatePredictions() {
   if (currentModel === "LR") {
     outputMap = await sessOne.run([input]);
   } else if (currentModel === "CNN") {
-    outputMap = await sessOne.run([input]);
+    outputMap = await sessTwo.run([input]);
   } else if (currentModel === "DNN") {
     outputMap = await sessThree.run([input]);
   } else if (currentModel === "KNN") {
-    outputMap = await sessOne.run([input]);
+    outputMap = await sessFour.run([input]);
   }
 
   const outputTensor = outputMap.values().next().value;
