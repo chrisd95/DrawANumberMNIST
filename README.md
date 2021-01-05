@@ -1,5 +1,13 @@
-# 3DCheckerBoardCube
-p5js rendition of a 3d checkerboard patterned cube
+# Draw Any Number MNIST
+A web app which integrates multiple MNIST models with onnx.js
+
+
+# The models
+Showcases the different models such as:
+-Logistic Regression
+-Deep Neural Network
+-K-Nearest Neighbor
+-Convolutional Neural Network
 
 Live mode:
-https://fathomless-mountain-95073.herokuapp.com/
+https://drawanynumbermnist.herokuapp.com/
